@@ -1,6 +1,6 @@
 {
   "name": "generator-mocha-testem",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Yeoman generator for Mocha+Testem",
   "keywords": [
     "yeoman-generator",
@@ -10,12 +10,12 @@
     "bdd",
     "tdd"
   ],
-  "homepage": "https://github.com/yeoman/generator-mocha",
-  "bugs": "https://github.com/yeoman/generator-mocha/issues",
-  "author": "Chrome Developer Relations",
+  "homepage": "https://github.com/callumlocke/generator-mocha-testem",
+  "bugs": "https://github.com/callumlocke/generator-mocha-testem/issues",
+  "author": "Callum Locke",
   "repository": {
     "type": "git",
-    "url": "git://github.com/yeoman/generator-mocha.git"
+    "url": "git://github.com/callumlocke/generator-mocha-testem.git"
   },
   "scripts": {
     "test": "mocha --reporter spec"
