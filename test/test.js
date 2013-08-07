@@ -11,7 +11,7 @@ describe('Mocha generator test', function () {
         return done(err);
       }
 
-      this.app = helpers.createGenerator('mocha:app', [
+      this.app = helpers.createGenerator('mocha-testem:app', [
         '../../lib/generators/app'
       ]);
       done();
