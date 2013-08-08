@@ -1,32 +1,43 @@
 # Mocha+Testem generator [![Build Status](https://secure.travis-ci.org/callumlocke/generator-mocha-testem.png?branch=master)](http://travis-ci.org/callumlocke/generator-mocha-testem)
 
+This is a fork of [generator-mocha](https://github.com/yeoman/generator-mocha), modifed to work with [Testem](https://github.com/airportyh/testem). ([See differences](https://github.com/callumlocke/generator-mocha-testem/compare/yeoman:master...master).)
+
+Works well with [generator-webapp](https://github.com/yeoman/generator-webapp).
 
 ## Getting Started
 
-Install:
-
     npm install -g generator-mocha-testem
 
-### Usage
+
+## Usage
 
     yo mocha-testem
-    testem
 
-### How to use with generator-webapp
+What this does:
+* creates `test` directory (similar to generator-mocha's, but modified to work through the Testem server)
+* creates `testem.json`
+* adds some lines to your `.gitignore`
 
-This assumes you're starting a new project.
+Now run `testem`, and it should launch some browsers and run your tests.
+
+
+## How to use with generator-webapp
 
 * `mkdir myproject && cd myproject`
 * `yo webapp`
 * Delete the `test` directory: `rm -rf test`
 * `yo mocha-testem`
-* Run `testem`. It should launch new Chrome and Firefox processes, which you can minimise. You can now use Testem for TDD in the usual way ([see docs](https://github.com/sideroad/grunt-testem)).
-* You can run `grunt-server` in another terminal at the same time.
-* In your spec runner (`test/index.html`), add script tags for your implementation code, which should look something like this: `<script src="../app/scripts/foo.js"></script>`. Script tags for spec files should look like this: `<script src="specs/foo-test.js"></script>`.
 
-#### Optional: add the grunt-testem plugin
+You can now run `testem` and `grunt server` at the same time in different terminals, and you'll have a live-reloading webapp and live-reloading test results at the same time.
 
-This lets you use Testem in CI mode during your build process. It launches browsers, runs your tests in them, and closes them afterwards.
+In your spec runner (`test/index.html`), add your script tags in this form:
+* application scripts: `<script src="../app/scripts/foo.js"></script>`
+* test scripts: `<script src="specs/foo-test.js"></script>`
+
+
+### Optional: add the grunt-testem plugin
+
+Follow these instructions to use Testem in CI mode during your build process. It launches each browser in turn, runs your tests, and closes them afterwards, then proceeds to the next step (e.g. build) only if everything was green.
 
 * Remove grunt-mocha: `npm uninstall -D grunt-mocha`
 * Add grunt-testem: `npm install -D grunt-testem`
@@ -44,11 +55,18 @@ This lets you use Testem in CI mode during your build process. It launches brows
         }
 ```
 
-Edit the `launch_in_ci` list of browsers in your `testem.json` if necessary. Now try running `grunt test`.
+Now try running `grunt test` (or just `grunt`).
 
-#### Coffeescript
+You can configure which browsers it launches by editing the `launch_in_ci` section in `testem.json`.
 
-More steps are probably needed to get this working with Coffeescript... Instructions will appear here when I've worked it out myself. PRs welcome.
+
+### Coffeescript
+
+_(Not yet tested.)_
+
+When running `grunt server` in a webapp project, CoffeeScripts are compiled to `.tmp`. So if you want to unit-test a `*.coffee` file, the script tag in your `test/index.html` will need to look like this: `<script src="../.tmp/scripts/foo.js"></script>`.
+
+(I haven't yet looked into using CoffeeScript for test files yet. More steps will be needed. Suggestions/PRs welcome.)
 
 
 ## Contribute
