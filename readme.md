@@ -7,10 +7,6 @@ Works well with [generator-webapp](https://github.com/yeoman/generator-webapp).
 ## Getting Started
 
     npm install -g generator-mocha-testem
-
-
-## Usage
-
     yo mocha-testem
 
 What this does:
